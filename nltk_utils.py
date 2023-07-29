@@ -27,3 +27,11 @@ def bag_of_words(tokenized_pattern,vocabulary):
             bag[index] = 1.0
 
     return bag
+
+# define the model prediction function
+def generate_chatbot_response(chatbot,user_request,tags):
+    y_pred = chatbot.predict(user_request,verbose=0)
+    intent_class_id = np.argmax(y_pred)
+    pred_proba = np.max(y_pred)
+    intent_tag = tags[intent_class_id]
+    return pred_proba,intent_tag
